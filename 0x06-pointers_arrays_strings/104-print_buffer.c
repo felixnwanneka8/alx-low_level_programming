@@ -1,104 +1,50 @@
 #include "main.h"
-
 #include <stdio.h>
 
-
 /**
-
- * print_buffer - main function
-
- *
-
- * @b: The buffer.
-
- *
-
- * @size: size of buffer
-
- *
-
- * Return: 0
-
+ * print_buffer - prints buffer
+ * @b: buffer
+ * @size: size
+ * Return: void
  */
 
-
 void print_buffer(char *b, int size)
-
 {
+int o, j, i;
 
-        int x;
+o = 0;
 
-        int y;
+if (size <= 0)
+{
+printf("\n");
+return;
+}
+while (o < size)
+{
+j = size - o < 10 ? size - o : 10;
+printf("%08x: ", o);
+for (i = 0; i < 10; i++)
+{
+if (i < j)
+printf("%02x", *(b + o + i));
+else
+printf("  ");
+if (i % 2)
+{
+printf(" ");
+}
+}
+for (i = 0; i < j; i++)
+{
+int c = *(b + o + i);
 
-        int z;
-
-
-        x = 0;
-
-
-        if (size <= 0)
-
-        {
-
-        printf("\n");
-
-        return;
-
-        }
-
-        while (x < size)
-
-        {
-
-        y = size - x < 10 ? size - x : 10;
-
-        printf("%08x: ", x);
-
-        for (z = 0; z < 10; z++)
-
-        {
-
-        if (z < y)
-
-        printf("%02x", *(b + x + z));
-
-        else
-
-        printf("  ");
-
-        if (z % 2)
-
-        {
-
-        printf(" ");
-
-        }
-
-        }
-
-        for (z = 0; z < y; z++)
-
-        {
-
-        int c = *(b + x + z);
-
-
-        if (c < 32 || c > 132)
-
-        {
-
-        c = '.';
-
-        }
-
-        printf("%c", c);
-
-        }
-
-        printf("\n");
-
-        x += 10;
-
-        }
-
+if (c < 32 || c > 132)
+{
+c = '.';
+}
+printf("%c", c);
+}
+printf("\n");
+o += 10;
+}
 }
